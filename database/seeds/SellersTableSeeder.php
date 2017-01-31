@@ -1,8 +1,9 @@
 <?php
 
+use App\Address;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class SellersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
-        $this->call(SellersTableSeeder::class);
+        $numOfProducts = 2;
+        factory(\App\Seller::Class, $numOfProducts)->create();
     }
 }

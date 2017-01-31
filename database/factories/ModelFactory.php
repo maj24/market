@@ -24,7 +24,6 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Address::class, function (Faker\Generator $faker) {
-    static $password;
 
     return [
         'address' => $faker->streetAddress,
@@ -32,5 +31,16 @@ $factory->define(App\Address::class, function (Faker\Generator $faker) {
         'state' => $faker->state,
         'country' => $faker->state,
         'postal_code' => $faker->postcode
+    ];
+});
+
+$factory->define(App\Seller::class, function (Faker\Generator $faker) {
+
+    return [
+        'name' => $faker->name,
+        'last_name' => $faker->lastName,
+        'address_id' => function() {
+        	return factory(App\Address::class)->create()->id;
+        }
     ];
 });
