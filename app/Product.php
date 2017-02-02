@@ -12,4 +12,9 @@ class Product extends Model
     {
         return $this->hasMany('App\Review');
     }
+
+    public function tags(){
+      return $this->belongsToMany('App\Tag');
+    }
+
 }
