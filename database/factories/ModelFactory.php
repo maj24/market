@@ -44,3 +44,14 @@ $factory->define(App\Seller::class, function (Faker\Generator $faker) {
         }
     ];
 });
+
+$factory->define(App\Reviewer::class, function (Faker\Generator $faker) {
+
+    return [
+        'reviewer_name' => $faker->name,
+        'title' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'content' => $faker->text($maxNbChars = 150),
+        'date' => $faker->date
+        }
+    ];
+});
