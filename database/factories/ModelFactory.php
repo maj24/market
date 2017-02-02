@@ -49,10 +49,9 @@ $factory->define(App\Review::class, function (Faker\Generator $faker) {
 
     return [
         'reviewer_name' => $faker->name,
-        'title' => $faker->sentence($nbWords = 6, $variableNbWords = true),
-        'content' => $faker->text($maxNbChars = 150),
+        'title' => $faker->sentence(6, true),
+        'content' => $faker->text(150),
         'date' => $faker->date
-        }
     ];
 });
 
@@ -61,8 +60,7 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->word,
         'description' => $faker->text($maxNbChars = 150),
-        'price' => $faker->number
-        }
+        'price' => $faker->randomNumber(2)
     ];
 });
 
@@ -70,6 +68,5 @@ $factory->define(App\Tag::class, function (Faker\Generator $faker) {
 
     return [
         'name' => $faker->word
-        }
     ];
 });

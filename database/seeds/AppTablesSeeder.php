@@ -2,6 +2,11 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Seller;
+use App\Product;
+use App\Review;
+use App\Tag;
+
 class AppTablesSeeder extends Seeder
 {
     /**
@@ -21,7 +26,7 @@ class AppTablesSeeder extends Seeder
                   App\Tag::all()->random(2)
                 );
             });
-            
+
             foreach ($products as $product) {
               factory(Review::class, 10)->create([
                 'product_id' => $product->id
