@@ -31,7 +31,7 @@ Route::put('/sellers/{id}/address', 'AddressController@update');
 
 // Product crud
 Route::get('/products', 'ProductController@index');
-Route::post('/products', 'ProductController@create');
+Route::post('/products', 'ProductController@store');
 Route::get('/products/{id}', 'ProductController@show');
 Route::put('/products/{id}', 'ProductController@update');
 Route::patch('/products/{id}', 'ProductController@edit');
@@ -39,5 +39,5 @@ Route::delete('/products/{id}', 'ProductController@delete');
 
 // Product reviews
 Route::get('/products/{id}/reviews', 'ReviewController@index');
-Route::post('/products/{id}/reviews', 'ReviewController@create');
+Route::post('/products/{id}/reviews', 'ReviewController@store');
 Route::delete('/products/{productId}/reviews/{reviewId}', 'ReviewController@delete');
