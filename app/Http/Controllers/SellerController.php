@@ -5,6 +5,8 @@ use App\Seller;
 
 use Illuminate\Http\Request;
 use Response;
+use Validator;
+use Illuminate\Support\Facades\Input;
 
 class SellerController extends Controller
 {
@@ -19,23 +21,59 @@ class SellerController extends Controller
     }
 
     public function store(Request $request) {
-        $attributes = $request->all();
-        $seller = Seller::create($attributes);
-        return Response::json($seller);
+        $rules = array(
+            'name'      => 'required',
+            'last_name' => 'required'
+        );
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return Response::json(['message' => 'Faltaron campos']);
+        } else {
+            $attributes = $request->all();
+            $seller = Seller::create($attributes);
+            return Response::json($seller);
+        }
     }
 
     public function update(Request $request, $id) {
-        $seller = Seller::find($id);
-        $attributes =  $request->all();
-        $seller->update($attributes);
-        return response()->json($seller);
+        $rules = array(
+            'name'      => 'required',
+            'last_name' => 'required'
+        );
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return Response::json(['message' => 'Faltaron campos']);
+        } else {
+            $seller = Seller::find($id);
+            $attributes =  $request->all();
+            $seller->update($attributes);
+            return response()->json($seller);
+        }
     }
 
     public function edit(Request $request, $id) {
-        $seller = Seller::find($id);
-        $attributes = $request->input();
-        $seller->update($attributes);
-        return response()->json($seller);
+        $rules = array(
+            'name'      => 'nullable',
+            'last_name' => 'nullable'
+        );
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return Response::json(['message' => 'Faltaron campos']);
+        } else {
+            $seller = Seller::find($id);
+            if (Input::has('name')){
+                $seller->name = $request->input('name');
+            }
+            if (Input::has('last_name')){
+                $seller->last_name = $request->input('last_name');
+            }
+            $seller->update();
+            
+            return Response::json($seller);
+        }
     }
 
     public function delete($id) {
