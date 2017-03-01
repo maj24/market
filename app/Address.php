@@ -11,6 +11,6 @@ class Address extends Model
 
     public function seller()
     {
-        return $this->belongsTo('App\Seller');
+        return $this->hasOne('App\Seller');
     }
 }

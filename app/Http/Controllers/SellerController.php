@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Seller;
 
 use Illuminate\Http\Request;
+use Response;
 
 class SellerController extends Controller
 {
@@ -17,31 +18,29 @@ class SellerController extends Controller
         return response()->json($seller);
     }
 
-    public function create(Request $request) {
-        $input = $request->input();
-        $seller = Seller::create($input);
-        return response()->json($seller);
+    public function store(Request $request) {
+        $attributes = $request->all();
+        $seller = Seller::create($attributes);
+        return Response::json($seller);
     }
 
     public function update(Request $request, $id) {
-        $updateSeller = Seller::with('address')->find($id);
-        $fields =  $request->input();
-        $updateSeller->fill($fields);
-        $updateSeller->save();
-        return response()->json($updateSeller);
+        $seller = Seller::find($id);
+        $attributes =  $request->all();
+        $seller->update($attributes);
+        return response()->json($seller);
     }
 
     public function edit(Request $request, $id) {
-        $updateSeller = Seller::with('address')->find($id);
-        $fields = $request->input();
-        $updateSeller->fill($fields);
-        $updateSeller->save();
-        return response()->json($updateSeller);
+        $seller = Seller::find($id);
+        $attributes = $request->input();
+        $seller->update($attributes);
+        return response()->json($seller);
     }
 
     public function delete($id) {
         $removedSeller = Seller::find($id);
         $removedSeller->delete();
-        return response()->json($removedSeller);
+        return response()->json([], 200);
     }
 }

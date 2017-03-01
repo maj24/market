@@ -20,13 +20,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Seller crud
 Route::get('/sellers', 'SellerController@index');
 Route::get('/sellers/{id}', 'SellerController@show');
-Route::post('/sellers', 'SellerController@create');
+Route::post('/sellers', 'SellerController@store');
 Route::put('/sellers/{id}', 'SellerController@update');
 Route::patch('/sellers/{id}', 'SellerController@edit');
 Route::delete('/sellers/{id}', 'SellerController@delete');
 
 // Seller addres
-Route::post('/sellers/{id}/address', 'AddressController@create');
+Route::post('/sellers/{id}/address', 'AddressController@store');
 Route::put('/sellers/{id}/address', 'AddressController@update');
 
 // Product crud
